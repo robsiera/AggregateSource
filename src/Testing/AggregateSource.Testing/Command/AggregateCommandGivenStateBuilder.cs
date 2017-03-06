@@ -22,7 +22,7 @@ namespace AggregateSource.Testing.Command
 
         public IAggregateCommandGivenStateBuilder<TAggregateRoot> Given(params object[] events)
         {
-            if (events == null) throw new ArgumentNullException("events");
+            if (events == null) throw new ArgumentNullException(nameof(events));
 #if NET20
             var givens = new List<object>();
             givens.AddRange(_givens);
@@ -35,7 +35,7 @@ namespace AggregateSource.Testing.Command
 
         public IAggregateCommandWhenStateBuilder When(Action<TAggregateRoot> command)
         {
-            if (command == null) throw new ArgumentNullException("command");
+            if (command == null) throw new ArgumentNullException(nameof(command));
             return new AggregateCommandWhenStateBuilder(_sutFactory, _givens, root => command((TAggregateRoot) root));
         }
     }

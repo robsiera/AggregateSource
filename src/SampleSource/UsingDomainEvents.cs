@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using AggregateSource;
 using NUnit.Framework;
+using SampleSource.UsingDomainEvents.Messaging;
 
 namespace SampleSource
 {
     namespace UsingDomainEvents
     {
-        using Messaging;
-
         [TestFixture]
         public class SampleUsage
         {
@@ -35,27 +34,28 @@ namespace SampleSource
 
         public static class DomainEventDispatcher
         {
-            [ThreadStatic] static Dictionary<Type, List<Action<object>>> _index;
+            [ThreadStatic]
+            static Dictionary<Type, List<Action<object>>> _index;
 
             public static IDisposable Subscribe<TEvent>(Action<TEvent> handler)
             {
-                if (handler == null) throw new ArgumentNullException("handler");
+                if (handler == null) throw new ArgumentNullException(nameof(handler));
                 if (_index == null)
                     _index = new Dictionary<Type, List<Action<object>>>();
                 List<Action<object>> handlers;
-                if (!_index.TryGetValue(typeof (TEvent), out handlers))
+                if (!_index.TryGetValue(typeof(TEvent), out handlers))
                 {
                     handlers = new List<Action<object>>();
-                    _index.Add(typeof (TEvent), handlers);
+                    _index.Add(typeof(TEvent), handlers);
                 }
-                var action = new Action<Object>(@event => handler((TEvent) @event));
+                var action = new Action<Object>(@event => handler((TEvent)@event));
                 handlers.Add(action);
                 return new Disposable(() => handlers.Remove(action));
             }
 
             public static void Publish(object @event)
             {
-                if (@event == null) throw new ArgumentNullException("event");
+                if (@event == null) throw new ArgumentNullException(nameof(@event));
                 List<Action<object>> handlers;
                 if (!_index.TryGetValue(@event.GetType(), out handlers)) return;
                 foreach (var handler in handlers)
@@ -71,7 +71,7 @@ namespace SampleSource
 
                 public Disposable(Action disposer)
                 {
-                    if (disposer == null) throw new ArgumentNullException("disposer");
+                    if (disposer == null) throw new ArgumentNullException(nameof(disposer));
                     _disposer = disposer;
                 }
 
@@ -86,7 +86,7 @@ namespace SampleSource
 
         public class TodoList : DomainEventAwareAggregateRootEntity
         {
-            TodoList() {}
+            TodoList() { }
 
             public TodoList(TodoListId id, string name)
                 : this()
@@ -114,7 +114,7 @@ namespace SampleSource
             public override bool Equals(object obj)
             {
                 if (ReferenceEquals(null, obj)) return false;
-                return obj is TodoListId && Equals((TodoListId) obj);
+                return obj is TodoListId && Equals((TodoListId)obj);
             }
 
             public override int GetHashCode()
@@ -142,7 +142,7 @@ namespace SampleSource
                     if (ReferenceEquals(null, obj)) return false;
                     if (ReferenceEquals(this, obj)) return true;
                     if (obj.GetType() != GetType()) return false;
-                    return Equals((AddedNewTodoList) obj);
+                    return Equals((AddedNewTodoList)obj);
                 }
 
                 public override int GetHashCode()

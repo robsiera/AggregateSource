@@ -22,9 +22,9 @@ namespace AggregateSource
         public Aggregate(string identifier, int expectedVersion, IAggregateRootEntity root)
         {
             if (identifier == null)
-                throw new ArgumentNullException("identifier");
+                throw new ArgumentNullException(nameof(identifier));
             if (root == null)
-                throw new ArgumentNullException("root");
+                throw new ArgumentNullException(nameof(root));
             _identifier = identifier;
             _expectedVersion = expectedVersion;
             _root = root;

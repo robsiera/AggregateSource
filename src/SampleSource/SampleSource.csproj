@@ -41,9 +41,9 @@
     <Reference Include="KellermanSoftware.Compare-NET-Objects">
       <HintPath>packages\CompareNETObjects.1.7.4.0\lib\KellermanSoftware.Compare-NET-Objects.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -65,8 +65,15 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Messages\AddedNewTodoList.cs" />
+    <Compile Include="Messages\DescribedTodoListItem.cs" />
+    <Compile Include="Messages\AddedNewItemToTodoList.cs" />
     <Compile Include="Testing\AggregateAsSystemUnderTest.cs" />
     <Compile Include="Testing\UsingIdFromIEvent.cs" />
+    <Compile Include="Domain\TodoListItem.cs" />
+    <Compile Include="Domain\TodoList.cs" />
+    <Compile Include="Domain\Identifiers\TodoListItemId.cs" />
+    <Compile Include="Domain\Identifiers\TodoListId.cs" />
     <Compile Include="UsingDomainEvents.cs" />
     <Compile Include="UsingEntities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

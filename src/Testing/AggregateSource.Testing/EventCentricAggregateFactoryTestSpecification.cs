@@ -23,10 +23,10 @@ namespace AggregateSource.Testing
                                                              Func<IAggregateRootEntity, IAggregateRootEntity> when,
                                                              object[] thens)
         {
-            if (sutFactory == null) throw new ArgumentNullException("sutFactory");
-            if (givens == null) throw new ArgumentNullException("givens");
-            if (when == null) throw new ArgumentNullException("when");
-            if (thens == null) throw new ArgumentNullException("thens");
+            if (sutFactory == null) throw new ArgumentNullException(nameof(sutFactory));
+            if (givens == null) throw new ArgumentNullException(nameof(givens));
+            if (when == null) throw new ArgumentNullException(nameof(when));
+            if (thens == null) throw new ArgumentNullException(nameof(thens));
             _sutFactory = sutFactory;
             _givens = givens;
             _when = when;
@@ -88,7 +88,7 @@ namespace AggregateSource.Testing
         /// <returns>A new <see cref="EventCentricAggregateFactoryTestResult"/>.</returns>
         public EventCentricAggregateFactoryTestResult Fail(object[] actual)
         {
-            if (actual == null) throw new ArgumentNullException("actual");
+            if (actual == null) throw new ArgumentNullException(nameof(actual));
             return new EventCentricAggregateFactoryTestResult(
                 this,
                 TestResultState.Failed,
@@ -103,7 +103,7 @@ namespace AggregateSource.Testing
         /// <returns>A new <see cref="EventCentricAggregateFactoryTestResult"/>.</returns>
         public EventCentricAggregateFactoryTestResult Fail(Exception actual)
         {
-            if (actual == null) throw new ArgumentNullException("actual");
+            if (actual == null) throw new ArgumentNullException(nameof(actual));
             return new EventCentricAggregateFactoryTestResult(
                 this,
                 TestResultState.Failed,

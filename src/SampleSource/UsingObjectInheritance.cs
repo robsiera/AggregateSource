@@ -2,19 +2,20 @@
 using System.Linq;
 using AggregateSource;
 using NUnit.Framework;
+using SampleSource.UsingObjectInheritance.Messaging;
 
 namespace SampleSource
 {
     namespace UsingObjectInheritance
     {
-        using Messaging;
-
         [TestFixture]
         public class SampleUsage
         {
             [Test]
             public void Renting_a_video_tape_emits_a_recent_enough_video_title()
             {
+                //see https://seabites.wordpress.com/2012/10/12/object-inheritance/
+
                 var videoTitleId = new VideoTitleId(Guid.NewGuid());
                 var title = VideoTitle.Register(videoTitleId, "Shaving Ryan's Privates");
                 var videoTapeId = new VideoTapeId(Guid.NewGuid());
@@ -98,7 +99,7 @@ namespace SampleSource
 
             VideoTape(IVideoTitleProfile title)
             {
-                if (title == null) throw new ArgumentNullException("title");
+                if (title == null) throw new ArgumentNullException(nameof(title));
                 _title = title;
                 Register<ScannedNewVideoTape>(When);
             }
@@ -133,7 +134,7 @@ namespace SampleSource
             public RentalPeriod(DateTime from, DateTime to)
             {
                 if (from.Date < DateTime.Today)
-                    throw new ArgumentOutOfRangeException("from");
+                    throw new ArgumentOutOfRangeException(nameof(@from));
                 if (from.Date > to.Date)
                     throw new ArgumentException("The from date should be less than or equal to the to date.");
                 _fromDate = from.Date;
@@ -158,11 +159,11 @@ namespace SampleSource
             public BarCode(string value)
             {
                 if (value == null)
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
                 if (value.Length != 4)
-                    throw new ArgumentOutOfRangeException("value", "The value of a barcode should be 4 characters long.");
+                    throw new ArgumentOutOfRangeException(nameof(value), "The value of a barcode should be 4 characters long.");
                 if (value.Any(@char => !@char.IsHexSymbol()))
-                    throw new ArgumentOutOfRangeException("value",
+                    throw new ArgumentOutOfRangeException(nameof(value),
                                                           "The value of a barcode should consist of hexadecimal characters only.");
                 _value = value;
             }
@@ -177,7 +178,7 @@ namespace SampleSource
                 if (ReferenceEquals(null, obj)) return false;
                 if (ReferenceEquals(this, obj)) return true;
                 if (obj.GetType() != GetType()) return false;
-                return Equals((BarCode) obj);
+                return Equals((BarCode)obj);
             }
 
             public override int GetHashCode()
@@ -222,7 +223,7 @@ namespace SampleSource
             public override bool Equals(object obj)
             {
                 if (ReferenceEquals(null, obj)) return false;
-                return obj is VideoTapeId && Equals((VideoTapeId) obj);
+                return obj is VideoTapeId && Equals((VideoTapeId)obj);
             }
 
             public override int GetHashCode()
@@ -253,7 +254,7 @@ namespace SampleSource
             public override bool Equals(object obj)
             {
                 if (ReferenceEquals(null, obj)) return false;
-                return obj is VideoTitleId && Equals((VideoTitleId) obj);
+                return obj is VideoTitleId && Equals((VideoTitleId)obj);
             }
 
             public override int GetHashCode()
@@ -284,7 +285,7 @@ namespace SampleSource
             public override bool Equals(object obj)
             {
                 if (ReferenceEquals(null, obj)) return false;
-                return obj is VideoStoreMemberId && Equals((VideoStoreMemberId) obj);
+                return obj is VideoStoreMemberId && Equals((VideoStoreMemberId)obj);
             }
 
             public override int GetHashCode()
@@ -359,7 +360,7 @@ namespace SampleSource
                     if (ReferenceEquals(null, obj)) return false;
                     if (ReferenceEquals(this, obj)) return true;
                     if (obj.GetType() != GetType()) return false;
-                    return Equals((RentedVideoTape) obj);
+                    return Equals((RentedVideoTape)obj);
                 }
 
                 public override int GetHashCode()
@@ -367,11 +368,11 @@ namespace SampleSource
                     unchecked
                     {
                         var hashCode = VideoTapeId.GetHashCode();
-                        hashCode = (hashCode*397) ^ (Title != null ? Title.GetHashCode() : 0);
-                        hashCode = (hashCode*397) ^ VideoTitleId.GetHashCode();
-                        hashCode = (hashCode*397) ^ VideoStoreMemberId.GetHashCode();
-                        hashCode = (hashCode*397) ^ FromDate.GetHashCode();
-                        hashCode = (hashCode*397) ^ ToDate.GetHashCode();
+                        hashCode = (hashCode * 397) ^ (Title != null ? Title.GetHashCode() : 0);
+                        hashCode = (hashCode * 397) ^ VideoTitleId.GetHashCode();
+                        hashCode = (hashCode * 397) ^ VideoStoreMemberId.GetHashCode();
+                        hashCode = (hashCode * 397) ^ FromDate.GetHashCode();
+                        hashCode = (hashCode * 397) ^ ToDate.GetHashCode();
                         return hashCode;
                     }
                 }

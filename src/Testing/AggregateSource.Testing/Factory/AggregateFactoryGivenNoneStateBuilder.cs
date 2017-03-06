@@ -15,7 +15,7 @@ namespace AggregateSource.Testing.Factory
         public IAggregateFactoryWhenStateBuilder When<TAggregateRootResult>(
             Func<TAggregateRoot, TAggregateRootResult> factory) where TAggregateRootResult : IAggregateRootEntity
         {
-            if (factory == null) throw new ArgumentNullException("factory");
+            if (factory == null) throw new ArgumentNullException(nameof(factory));
             return new AggregateFactoryWhenStateBuilder(_sutFactory, new object[0], root => factory((TAggregateRoot)root));
         }
     }

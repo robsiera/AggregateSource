@@ -27,8 +27,8 @@ namespace AggregateSource
                     ? string.Format(CultureInfo.InvariantCulture, Resources.AggregateNotFoundException_DefaultMessage, clrType.Name, identifier)
                     : null)
         {
-            if (identifier == null) throw new ArgumentNullException("identifier");
-            if (clrType == null) throw new ArgumentNullException("clrType");
+            if (identifier == null) throw new ArgumentNullException(nameof(identifier));
+            if (clrType == null) throw new ArgumentNullException(nameof(clrType));
             _identifier = identifier;
             _clrType = clrType;
         }
@@ -43,8 +43,8 @@ namespace AggregateSource
         public AggregateNotFoundException(string identifier, Type clrType, string message)
             : base(message)
         {
-            if (identifier == null) throw new ArgumentNullException("identifier");
-            if (clrType == null) throw new ArgumentNullException("clrType");
+            if (identifier == null) throw new ArgumentNullException(nameof(identifier));
+            if (clrType == null) throw new ArgumentNullException(nameof(clrType));
             _identifier = identifier;
             _clrType = clrType;
         }
@@ -60,8 +60,8 @@ namespace AggregateSource
         public AggregateNotFoundException(string identifier, Type clrType, string message, Exception innerException)
             : base(message, innerException)
         {
-            if (identifier == null) throw new ArgumentNullException("identifier");
-            if (clrType == null) throw new ArgumentNullException("clrType");
+            if (identifier == null) throw new ArgumentNullException(nameof(identifier));
+            if (clrType == null) throw new ArgumentNullException(nameof(clrType));
             _identifier = identifier;
             _clrType = clrType;
         }

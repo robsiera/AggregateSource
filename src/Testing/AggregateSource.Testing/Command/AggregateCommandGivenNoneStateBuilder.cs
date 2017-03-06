@@ -14,7 +14,7 @@ namespace AggregateSource.Testing.Command
 
         public IAggregateCommandWhenStateBuilder When(Action<TAggregateRoot> command)
         {
-            if (command == null) throw new ArgumentNullException("command");
+            if (command == null) throw new ArgumentNullException(nameof(command));
             return new AggregateCommandWhenStateBuilder(_sutFactory, new object[0], root => command((TAggregateRoot)root));
         }
     }

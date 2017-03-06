@@ -22,7 +22,7 @@ namespace AggregateSource.Testing.Factory
 
         public IAggregateFactoryGivenStateBuilder<TAggregateRoot> Given(params object[] events)
         {
-            if (events == null) throw new ArgumentNullException("events");
+            if (events == null) throw new ArgumentNullException(nameof(events));
 #if NET20
             var givens = new List<object>(_givens);
             givens.AddRange(events);
@@ -35,7 +35,7 @@ namespace AggregateSource.Testing.Factory
         public IAggregateFactoryWhenStateBuilder When<TAggregateRootResult>(
             Func<TAggregateRoot, TAggregateRootResult> factory) where TAggregateRootResult : IAggregateRootEntity
         {
-            if (factory == null) throw new ArgumentNullException("factory");
+            if (factory == null) throw new ArgumentNullException(nameof(factory));
             return new AggregateFactoryWhenStateBuilder(_sutFactory, _givens, root => factory((TAggregateRoot) root));
         }
     }

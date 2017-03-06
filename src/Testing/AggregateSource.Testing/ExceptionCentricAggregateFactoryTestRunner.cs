@@ -22,7 +22,7 @@ namespace AggregateSource.Testing
         /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="comparer"/> is <c>null</c>.</exception>
         public ExceptionCentricAggregateFactoryTestRunner(IExceptionComparer comparer)
         {
-            if (comparer == null) throw new ArgumentNullException("comparer");
+            if (comparer == null) throw new ArgumentNullException(nameof(comparer));
             _comparer = comparer;
         }
 
@@ -36,7 +36,7 @@ namespace AggregateSource.Testing
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
         public ExceptionCentricAggregateFactoryTestResult Run(ExceptionCentricAggregateFactoryTestSpecification specification)
         {
-            if (specification == null) throw new ArgumentNullException("specification");
+            if (specification == null) throw new ArgumentNullException(nameof(specification));
             var sut = specification.SutFactory();
             sut.Initialize(specification.Givens);
             IAggregateRootEntity factoryResult = null;

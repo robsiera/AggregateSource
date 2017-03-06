@@ -19,9 +19,9 @@ namespace AggregateSource.Testing
         /// <param name="throws">The specification exception thrown.</param>
         public ExceptionCentricTestSpecification(Fact[] givens, object when, Exception throws)
         {
-            if (givens == null) throw new ArgumentNullException("givens");
-            if (when == null) throw new ArgumentNullException("when");
-            if (throws == null) throw new ArgumentNullException("throws");
+            if (givens == null) throw new ArgumentNullException(nameof(givens));
+            if (when == null) throw new ArgumentNullException(nameof(when));
+            if (throws == null) throw new ArgumentNullException(nameof(throws));
             _givens = givens;
             _when = when;
             _throws = throws;
@@ -76,7 +76,7 @@ namespace AggregateSource.Testing
         /// <returns>A new <see cref="ExceptionCentricTestResult"/>.</returns>
         public ExceptionCentricTestResult Fail(Exception actual)
         {
-            if (actual == null) throw new ArgumentNullException("actual");
+            if (actual == null) throw new ArgumentNullException(nameof(actual));
             return new ExceptionCentricTestResult(this, TestResultState.Failed, new Optional<Exception>(actual), Optional<Fact[]>.Empty);
         }
 
@@ -87,7 +87,7 @@ namespace AggregateSource.Testing
         /// <returns>A new <see cref="ExceptionCentricTestResult"/>.</returns>
         public ExceptionCentricTestResult Fail(Fact[] actual)
         {
-            if (actual == null) throw new ArgumentNullException("actual");
+            if (actual == null) throw new ArgumentNullException(nameof(actual));
             return new ExceptionCentricTestResult(this, TestResultState.Failed, Optional<Exception>.Empty, new Optional<Fact[]>(actual));
         }
 

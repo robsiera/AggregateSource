@@ -20,7 +20,7 @@ namespace AggregateSource.Testing
         public ConstructorScenarioFor(Func<TAggregateRoot> constructor)
 		{
 			if (constructor == null)
-				throw new ArgumentNullException("constructor");
+				throw new ArgumentNullException(nameof(constructor));
 
 			_constructor = () => constructor();
 		}
@@ -32,7 +32,7 @@ namespace AggregateSource.Testing
 		/// <returns>A builder continuation.</returns>
 		public IAggregateConstructorThenStateBuilder Then(params object[] events)
 		{
-			if (events == null) throw new ArgumentNullException("events");
+			if (events == null) throw new ArgumentNullException(nameof(events));
 			return new AggregateConstructorThenStateBuilder(_constructor, events);
 		}
 
@@ -43,7 +43,7 @@ namespace AggregateSource.Testing
 		/// <returns>A builder continuation.</returns>
 		public IAggregateConstructorThrowStateBuilder Throws(Exception exception)
 		{
-			if (exception == null) throw new ArgumentNullException("exception");
+			if (exception == null) throw new ArgumentNullException(nameof(exception));
 			return new AggregateConstructorThrowStateBuilder(_constructor, exception);
 		}
 	}

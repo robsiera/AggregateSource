@@ -2,14 +2,13 @@
 using AggregateSource;
 using AggregateSource.Testing;
 using NUnit.Framework;
+using SampleSource.Testing.AggregateAsSystemUnderTest.Messaging;
+using SampleSource.Testing.AggregateAsSystemUnderTest.Ticketing;
 
 namespace SampleSource.Testing
 {
     namespace AggregateAsSystemUnderTest
     {
-        using Messaging;
-        using Ticketing;
-
         [TestFixture]
         public class SampleUsage
         {
@@ -109,8 +108,6 @@ namespace SampleSource.Testing
 
         namespace Ticketing
         {
-            using Messaging;
-
             public class Concert : AggregateRootEntity
             {
                 ConcertId _id;
@@ -231,7 +228,7 @@ namespace SampleSource.Testing
                 public SeatCount(int value)
                 {
                     if (value < 0)
-                        throw new ArgumentOutOfRangeException("value");
+                        throw new ArgumentOutOfRangeException(nameof(value));
                     _value = value;
                 }
 

@@ -23,10 +23,10 @@ namespace AggregateSource.Testing
                                                                  Func<IAggregateRootEntity, IAggregateRootEntity> when,
                                                                  Exception throws)
         {
-            if (sutFactory == null) throw new ArgumentNullException("sutFactory");
-            if (givens == null) throw new ArgumentNullException("givens");
-            if (when == null) throw new ArgumentNullException("when");
-            if (throws == null) throw new ArgumentNullException("throws");
+            if (sutFactory == null) throw new ArgumentNullException(nameof(sutFactory));
+            if (givens == null) throw new ArgumentNullException(nameof(givens));
+            if (when == null) throw new ArgumentNullException(nameof(when));
+            if (throws == null) throw new ArgumentNullException(nameof(throws));
             _sutFactory = sutFactory;
             _givens = givens;
             _when = when;
@@ -101,7 +101,7 @@ namespace AggregateSource.Testing
         /// <returns>A new <see cref="ExceptionCentricAggregateFactoryTestResult"/>.</returns>
         public ExceptionCentricAggregateFactoryTestResult Fail(object[] actual)
         {
-            if (actual == null) throw new ArgumentNullException("actual");
+            if (actual == null) throw new ArgumentNullException(nameof(actual));
             return new ExceptionCentricAggregateFactoryTestResult(
                 this,
                 TestResultState.Failed,
@@ -116,7 +116,7 @@ namespace AggregateSource.Testing
         /// <returns>A new <see cref="ExceptionCentricAggregateFactoryTestResult"/>.</returns>
         public ExceptionCentricAggregateFactoryTestResult Fail(Exception actual)
         {
-            if (actual == null) throw new ArgumentNullException("actual");
+            if (actual == null) throw new ArgumentNullException(nameof(actual));
             return new ExceptionCentricAggregateFactoryTestResult(
                 this,
                 TestResultState.Failed,

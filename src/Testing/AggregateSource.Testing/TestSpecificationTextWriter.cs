@@ -19,7 +19,7 @@ namespace AggregateSource.Testing
         /// <param name="writer">The text writer to write on.</param>
         public TestSpecificationTextWriter(TextWriter writer)
         {
-            if (writer == null) throw new ArgumentNullException("writer");
+            if (writer == null) throw new ArgumentNullException(nameof(writer));
             _writer = new IndentedTextWriter(writer, "  ");
         }
 

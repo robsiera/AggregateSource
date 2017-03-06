@@ -4,13 +4,12 @@ using System.Linq;
 using AggregateSource;
 using AggregateSource.Testing;
 using NUnit.Framework;
+using SampleSource.Testing.UsingIdFromIEvent.Messaging;
 
 namespace SampleSource.Testing
 {
     namespace UsingIdFromIEvent
     {
-        using Messaging;
-
         [TestFixture]
         public class TodoListTesting
         {
@@ -30,13 +29,13 @@ namespace SampleSource.Testing
         {
             public static IScenarioGivenStateBuilder Given(this IScenarioGivenStateBuilder builder, params IEvent[] events)
             {
-                if (events == null) throw new ArgumentNullException("events");
+                if (events == null) throw new ArgumentNullException(nameof(events));
                 return events.Aggregate(builder, (current, @event) => current.Given(@event.Id.ToString(), @event));
             }
 
             public static IScenarioThenStateBuilder Then(this IScenarioWhenStateBuilder builder, params IEvent[] events)
             {
-                if (events == null) throw new ArgumentNullException("events");
+                if (events == null) throw new ArgumentNullException(nameof(events));
                 if (events.Length == 0) return builder.Then(Guid.Empty.ToString(), new object[0]);
 
                 using (var enumerator = events.AsEnumerable().GetEnumerator())
@@ -53,7 +52,7 @@ namespace SampleSource.Testing
 
             public static IScenarioThenStateBuilder Then(this IScenarioThenStateBuilder builder, params IEvent[] events)
             {
-                if (events == null) throw new ArgumentNullException("events");
+                if (events == null) throw new ArgumentNullException(nameof(events));
                 return events.Aggregate(builder, (current, @event) => current.Then(@event.Id.ToString(), @event));
             }
 

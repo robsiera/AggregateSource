@@ -18,7 +18,7 @@ namespace AggregateSource.Testing.Comparers
         /// <exception cref="System.ArgumentNullException">Thrown when the <paramref name="comparer">comparer</paramref> is <c>null</c>.</exception>
         public CompareNetObjectsBasedFactComparer(ICompareObjects comparer)
         {
-            if (comparer == null) throw new ArgumentNullException("comparer");
+            if (comparer == null) throw new ArgumentNullException(nameof(comparer));
             _comparer = comparer;
         }
 

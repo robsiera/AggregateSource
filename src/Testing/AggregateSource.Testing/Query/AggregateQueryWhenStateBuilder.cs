@@ -23,7 +23,7 @@ namespace AggregateSource.Testing.Query
 
         public IAggregateQueryThrowStateBuilder Throws(Exception exception)
         {
-            if (exception == null) throw new ArgumentNullException("exception");
+            if (exception == null) throw new ArgumentNullException(nameof(exception));
             return new AggregateQueryThrowStateBuilder(_sutFactory, _givens, _when, exception);
         }
     }

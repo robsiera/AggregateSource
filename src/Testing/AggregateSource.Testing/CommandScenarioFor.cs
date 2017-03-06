@@ -26,7 +26,7 @@ namespace AggregateSource.Testing
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="sutFactory"/> is <c>null</c>.</exception>
         public CommandScenarioFor(Func<TAggregateRoot> sutFactory)
         {
-            if (sutFactory == null) throw new ArgumentNullException("sutFactory");
+            if (sutFactory == null) throw new ArgumentNullException(nameof(sutFactory));
             _sutFactory = () => sutFactory();
         }
 
@@ -38,7 +38,7 @@ namespace AggregateSource.Testing
         /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="events"/> are <c>null</c>.</exception>
         public IAggregateCommandGivenStateBuilder<TAggregateRoot> Given(params object[] events)
         {
-            if (events == null) throw new ArgumentNullException("events");
+            if (events == null) throw new ArgumentNullException(nameof(events));
             return new AggregateCommandGivenStateBuilder<TAggregateRoot>(_sutFactory, events);
         }
 
@@ -59,7 +59,7 @@ namespace AggregateSource.Testing
         /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="command"/> is <c>null</c>.</exception>
         public IAggregateCommandWhenStateBuilder When(Action<TAggregateRoot> command)
         {
-            if (command == null) throw new ArgumentNullException("command");
+            if (command == null) throw new ArgumentNullException(nameof(command));
             return new AggregateCommandWhenStateBuilder(_sutFactory, new object[0],
                                                         root => command((TAggregateRoot) root));
         }

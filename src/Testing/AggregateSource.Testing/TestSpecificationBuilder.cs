@@ -24,14 +24,14 @@ namespace AggregateSource.Testing
 
         public IScenarioGivenStateBuilder Given(params Fact[] facts)
         {
-            if (facts == null) throw new ArgumentNullException("facts");
+            if (facts == null) throw new ArgumentNullException(nameof(facts));
             return new TestSpecificationBuilder(_context.AppendGivens(facts));
         }
 
         public IScenarioGivenStateBuilder Given(string identifier, params object[] events)
         {
-            if (identifier == null) throw new ArgumentNullException("identifier");
-            if (events == null) throw new ArgumentNullException("events");
+            if (identifier == null) throw new ArgumentNullException(nameof(identifier));
+            if (events == null) throw new ArgumentNullException(nameof(events));
 #if NET20
             var facts = new List<Fact>();
             foreach (var @event in events)
@@ -53,20 +53,20 @@ namespace AggregateSource.Testing
 
         public IScenarioWhenStateBuilder When(object message)
         {
-            if (message == null) throw new ArgumentNullException("message");
+            if (message == null) throw new ArgumentNullException(nameof(message));
             return new TestSpecificationBuilder(_context.SetWhen(message));
         }
 
         public IScenarioThenStateBuilder Then(params Fact[] facts)
         {
-            if (facts == null) throw new ArgumentNullException("facts");
+            if (facts == null) throw new ArgumentNullException(nameof(facts));
             return new TestSpecificationBuilder(_context.AppendThens(facts));
         }
 
         public IScenarioThenStateBuilder Then(string identifier, params object[] events)
         {
-            if (identifier == null) throw new ArgumentNullException("identifier");
-            if (events == null) throw new ArgumentNullException("events");
+            if (identifier == null) throw new ArgumentNullException(nameof(identifier));
+            if (events == null) throw new ArgumentNullException(nameof(events));
 #if NET20
             var facts = new List<Fact>();
             foreach (var @event in events)
@@ -88,7 +88,7 @@ namespace AggregateSource.Testing
 
         public IScenarioThrowStateBuilder Throws(Exception exception)
         {
-            if (exception == null) throw new ArgumentNullException("exception");
+            if (exception == null) throw new ArgumentNullException(nameof(exception));
             return new TestSpecificationBuilder(_context.SetThrows(exception));
         }
 

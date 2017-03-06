@@ -17,8 +17,8 @@ namespace AggregateSource.Testing
 		/// <param name="thens">The events to assert.</param>
 		public EventCentricAggregateConstructorTestSpecification(Func<IAggregateRootEntity> sutFactory, object[] thens)
 		{
-		    if (sutFactory == null) throw new ArgumentNullException("sutFactory");
-		    if (thens == null) throw new ArgumentNullException("thens");
+		    if (sutFactory == null) throw new ArgumentNullException(nameof(sutFactory));
+		    if (thens == null) throw new ArgumentNullException(nameof(thens));
 		    _sutFactory = sutFactory;
 			_thens = thens;
 		}
@@ -62,7 +62,7 @@ namespace AggregateSource.Testing
         /// <returns>A new <see cref="EventCentricAggregateConstructorTestResult"/>.</returns>
         public EventCentricAggregateConstructorTestResult Fail(object[] actual)
         {
-            if (actual == null) throw new ArgumentNullException("actual");
+            if (actual == null) throw new ArgumentNullException(nameof(actual));
             return new EventCentricAggregateConstructorTestResult(
                 this,
                 TestResultState.Failed,
@@ -77,7 +77,7 @@ namespace AggregateSource.Testing
         /// <returns>A new <see cref="EventCentricAggregateConstructorTestResult"/>.</returns>
         public EventCentricAggregateConstructorTestResult Fail(Exception actual)
         {
-            if (actual == null) throw new ArgumentNullException("actual");
+            if (actual == null) throw new ArgumentNullException(nameof(actual));
             return new EventCentricAggregateConstructorTestResult(
                 this,
                 TestResultState.Failed,

@@ -23,13 +23,13 @@ namespace AggregateSource.Testing.Factory
 
         public IAggregateFactoryThenStateBuilder Then(params object[] events)
         {
-            if (events == null) throw new ArgumentNullException("events");
+            if (events == null) throw new ArgumentNullException(nameof(events));
             return new AggregateFactoryThenStateBuilder(_sutFactory, _givens, _when, events);
         }
 
         public IAggregateFactoryThrowStateBuilder Throws(Exception exception)
         {
-            if (exception == null) throw new ArgumentNullException("exception");
+            if (exception == null) throw new ArgumentNullException(nameof(exception));
             return new AggregateFactoryThrowStateBuilder(_sutFactory, _givens, _when, exception);
         }
     }

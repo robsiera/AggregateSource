@@ -22,7 +22,7 @@ namespace AggregateSource.Testing.Query
 
         public IAggregateQueryGivenStateBuilder<TAggregateRoot> Given(params object[] events)
         {
-            if (events == null) throw new ArgumentNullException("events");
+            if (events == null) throw new ArgumentNullException(nameof(events));
 #if NET20
             var givens = new List<object>(_givens);
             givens.AddRange(events);
@@ -34,7 +34,7 @@ namespace AggregateSource.Testing.Query
 
         public IAggregateQueryWhenStateBuilder<TResult> When<TResult>(Func<TAggregateRoot, TResult> query)
         {
-            if (query == null) throw new ArgumentNullException("query");
+            if (query == null) throw new ArgumentNullException(nameof(query));
             return new AggregateQueryWhenStateBuilder<TResult>(_sutFactory, _givens,
                                                                root => query((TAggregateRoot) root));
         }

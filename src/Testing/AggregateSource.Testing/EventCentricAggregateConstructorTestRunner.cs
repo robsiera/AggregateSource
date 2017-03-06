@@ -22,7 +22,7 @@ namespace AggregateSource.Testing
         /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="comparer"/> is <c>null</c>.</exception>
         public EventCentricAggregateConstructorTestRunner(IEventComparer comparer)
         {
-            if (comparer == null) throw new ArgumentNullException("comparer");
+            if (comparer == null) throw new ArgumentNullException(nameof(comparer));
             _comparer = comparer;
         }
 
@@ -36,7 +36,7 @@ namespace AggregateSource.Testing
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
         public EventCentricAggregateConstructorTestResult Run(EventCentricAggregateConstructorTestSpecification specification)
         {
-            if (specification == null) throw new ArgumentNullException("specification");
+            if (specification == null) throw new ArgumentNullException(nameof(specification));
             IAggregateRootEntity sut = null;
             var result = Catch.Exception(() => sut = specification.SutFactory());
             if (result.HasValue)

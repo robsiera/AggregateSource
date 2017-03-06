@@ -26,7 +26,7 @@ namespace AggregateSource.Testing.Command
 
         public IAggregateCommandThenStateBuilder Then(params object[] events)
         {
-            if (events == null) throw new ArgumentNullException("events");
+            if (events == null) throw new ArgumentNullException(nameof(events));
 #if NET20
             var thens = new List<object>();
             thens.AddRange(_thens);

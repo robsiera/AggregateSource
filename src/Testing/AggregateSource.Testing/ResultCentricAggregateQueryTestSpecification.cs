@@ -25,9 +25,9 @@ namespace AggregateSource.Testing
             Func<IAggregateRootEntity, object> when, 
             object then)
         {
-            if (sutFactory == null) throw new ArgumentNullException("sutFactory");
-            if (givens == null) throw new ArgumentNullException("givens");
-            if (when == null) throw new ArgumentNullException("when");
+            if (sutFactory == null) throw new ArgumentNullException(nameof(sutFactory));
+            if (givens == null) throw new ArgumentNullException(nameof(givens));
+            if (when == null) throw new ArgumentNullException(nameof(when));
             _sutFactory = sutFactory;
             _givens = givens;
             _when = when;
@@ -90,7 +90,7 @@ namespace AggregateSource.Testing
         /// <returns>A new <see cref="ResultCentricAggregateQueryTestResult"/>.</returns>
         public ResultCentricAggregateQueryTestResult Fail(object[] actual)
         {
-            if (actual == null) throw new ArgumentNullException("actual");
+            if (actual == null) throw new ArgumentNullException(nameof(actual));
             return new ResultCentricAggregateQueryTestResult(
                 this,
                 TestResultState.Failed,
@@ -106,7 +106,7 @@ namespace AggregateSource.Testing
         /// <returns>A new <see cref="ResultCentricAggregateQueryTestResult"/>.</returns>
         public ResultCentricAggregateQueryTestResult Fail(Exception actual)
         {
-            if (actual == null) throw new ArgumentNullException("actual");
+            if (actual == null) throw new ArgumentNullException(nameof(actual));
             return new ResultCentricAggregateQueryTestResult(
                 this,
                 TestResultState.Failed,

@@ -30,7 +30,7 @@ namespace AggregateSource
         public void Attach(Aggregate aggregate)
         {
             if (aggregate == null)
-                throw new ArgumentNullException("aggregate");
+                throw new ArgumentNullException(nameof(aggregate));
             if (!_aggregates.TryAdd(aggregate.Identifier, aggregate))
                 throw new ArgumentException(
                     string.Format(CultureInfo.InvariantCulture,

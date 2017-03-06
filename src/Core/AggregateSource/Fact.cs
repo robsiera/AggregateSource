@@ -23,8 +23,8 @@ namespace AggregateSource
         /// <exception cref="System.ArgumentNullException">Thrown if <paramref name="identifier"/> or <paramref name="event"/> is <c>null</c>.</exception>
         public Fact(string identifier, object @event)
         {
-            if (identifier == null) throw new ArgumentNullException("identifier");
-            if (@event == null) throw new ArgumentNullException("event");
+            if (identifier == null) throw new ArgumentNullException(nameof(identifier));
+            if (@event == null) throw new ArgumentNullException(nameof(@event));
             _identifier = identifier;
             _event = @event;
         }

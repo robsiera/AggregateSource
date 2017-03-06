@@ -17,7 +17,7 @@ namespace AggregateSource.Testing
         /// <exception cref="System.ArgumentNullException">facts</exception>
         public IScenarioGivenStateBuilder Given(params Fact[] facts)
         {
-            if (facts == null) throw new ArgumentNullException("facts");
+            if (facts == null) throw new ArgumentNullException(nameof(facts));
             return new TestSpecificationBuilder().Given(facts);
         }
 
@@ -29,8 +29,8 @@ namespace AggregateSource.Testing
         /// <returns>A builder continuation.</returns>
         public IScenarioGivenStateBuilder Given(string identifier, params object[] events)
         {
-            if (identifier == null) throw new ArgumentNullException("identifier");
-            if (events == null) throw new ArgumentNullException("events");
+            if (identifier == null) throw new ArgumentNullException(nameof(identifier));
+            if (events == null) throw new ArgumentNullException(nameof(events));
             return new TestSpecificationBuilder().Given(identifier, events);
         }
 
@@ -50,7 +50,7 @@ namespace AggregateSource.Testing
         /// <returns>A builder continuation.</returns>
         public IScenarioWhenStateBuilder When(object message)
         {
-            if (message == null) throw new ArgumentNullException("message");
+            if (message == null) throw new ArgumentNullException(nameof(message));
             return new TestSpecificationBuilder().When(message);
         }
     }

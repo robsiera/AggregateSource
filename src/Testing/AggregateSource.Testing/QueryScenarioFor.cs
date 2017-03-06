@@ -25,7 +25,7 @@ namespace AggregateSource.Testing
         /// <param name="sutFactory">The sut factory.</param>
         public QueryScenarioFor(Func<TAggregateRoot> sutFactory)
         {
-            if (sutFactory == null) throw new ArgumentNullException("sutFactory");
+            if (sutFactory == null) throw new ArgumentNullException(nameof(sutFactory));
             _sutFactory = () => sutFactory();
         }
 
@@ -46,7 +46,7 @@ namespace AggregateSource.Testing
         /// <exception cref="System.ArgumentNullException">Thrown when the <paramref name="events"/> are <c>null</c>.</exception>
         public IAggregateQueryGivenStateBuilder<TAggregateRoot> Given(params object[] events)
         {
-            if (events == null) throw new ArgumentNullException("events");
+            if (events == null) throw new ArgumentNullException(nameof(events));
             return new AggregateQueryGivenStateBuilder<TAggregateRoot>(_sutFactory, events);
         }
 
@@ -58,7 +58,7 @@ namespace AggregateSource.Testing
         /// <exception cref="System.ArgumentNullException">Thrown when the <paramref name="query"/> is <c>null</c>.</exception>
         public IAggregateQueryWhenStateBuilder<TResult> When<TResult>(Func<TAggregateRoot, TResult> query)
         {
-            if (query == null) throw new ArgumentNullException("query");
+            if (query == null) throw new ArgumentNullException(nameof(query));
             return new AggregateQueryWhenStateBuilder<TResult>(_sutFactory, new object[0],
                                                                root => query((TAggregateRoot) root));
         }

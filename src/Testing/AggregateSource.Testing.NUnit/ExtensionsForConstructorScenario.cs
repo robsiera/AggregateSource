@@ -24,8 +24,8 @@ namespace AggregateSource.Testing
         public static void Assert(this IEventCentricAggregateConstructorTestSpecificationBuilder builder,
             IEventComparer comparer)
         {
-            if (builder == null) throw new ArgumentNullException("builder");
-            if (comparer == null) throw new ArgumentNullException("comparer");
+            if (builder == null) throw new ArgumentNullException(nameof(builder));
+            if (comparer == null) throw new ArgumentNullException(nameof(comparer));
             var specification = builder.Build();
             var runner = new EventCentricAggregateConstructorTestRunner(comparer);
             var result = runner.Run(specification);
@@ -98,8 +98,8 @@ namespace AggregateSource.Testing
         public static void Assert(this IExceptionCentricAggregateConstructorTestSpecificationBuilder builder,
             IExceptionComparer comparer)
         {
-            if (builder == null) throw new ArgumentNullException("builder");
-            if (comparer == null) throw new ArgumentNullException("comparer");
+            if (builder == null) throw new ArgumentNullException(nameof(builder));
+            if (comparer == null) throw new ArgumentNullException(nameof(comparer));
             var specification = builder.Build();
             var runner = new ExceptionCentricAggregateConstructorTestRunner(comparer);
             var result = runner.Run(specification);

@@ -17,8 +17,8 @@ namespace AggregateSource.Testing
 		/// <param name="throws">The expected exception to assert.</param>
 		public ExceptionCentricAggregateConstructorTestSpecification(Func<IAggregateRootEntity> sutFactory, Exception throws)
 		{
-		    if (sutFactory == null) throw new ArgumentNullException("sutFactory");
-		    if (throws == null) throw new ArgumentNullException("throws");
+		    if (sutFactory == null) throw new ArgumentNullException(nameof(sutFactory));
+		    if (throws == null) throw new ArgumentNullException(nameof(throws));
 		    _sutFactory = sutFactory;
 			_throws = throws;
 		}
@@ -75,7 +75,7 @@ namespace AggregateSource.Testing
         /// <returns>A new <see cref="ExceptionCentricAggregateConstructorTestResult"/>.</returns>
         public ExceptionCentricAggregateConstructorTestResult Fail(object[] actual)
         {
-            if (actual == null) throw new ArgumentNullException("actual");
+            if (actual == null) throw new ArgumentNullException(nameof(actual));
             return new ExceptionCentricAggregateConstructorTestResult(
                 this,
                 TestResultState.Failed,
@@ -90,7 +90,7 @@ namespace AggregateSource.Testing
         /// <returns>A new <see cref="ExceptionCentricAggregateConstructorTestResult"/>.</returns>
         public ExceptionCentricAggregateConstructorTestResult Fail(Exception actual)
         {
-            if (actual == null) throw new ArgumentNullException("actual");
+            if (actual == null) throw new ArgumentNullException(nameof(actual));
             return new ExceptionCentricAggregateConstructorTestResult(
                 this,
                 TestResultState.Failed,

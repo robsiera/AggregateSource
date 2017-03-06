@@ -31,8 +31,8 @@ namespace AggregateSource.Testing
         /// <exception cref="System.ArgumentNullException">Thrown when the <paramref name="identifier"/> or <paramref name="events"/> is <c>null</c>.</exception>
         public FactsBuilder That(string identifier, params object[] events)
         {
-            if (identifier == null) throw new ArgumentNullException("identifier");
-            if (events == null) throw new ArgumentNullException("events");
+            if (identifier == null) throw new ArgumentNullException(nameof(identifier));
+            if (events == null) throw new ArgumentNullException(nameof(events));
             if (events.Length == 0) return this;
             var combinedFacts = new Fact[_facts.Length + events.Length];
             _facts.CopyTo(combinedFacts, 0);
@@ -51,7 +51,7 @@ namespace AggregateSource.Testing
         /// <exception cref="System.ArgumentNullException">Thrown when the <paramref name="facts"/> is <c>null</c>.</exception>
         public FactsBuilder That(params Fact[] facts)
         {
-            if (facts == null) throw new ArgumentNullException("facts");
+            if (facts == null) throw new ArgumentNullException(nameof(facts));
             var combinedFacts = new Fact[_facts.Length + facts.Length];
             _facts.CopyTo(combinedFacts, 0);
             facts.CopyTo(combinedFacts, _facts.Length);
